@@ -1,8 +1,8 @@
-- hosts: webserver
-  becomes :  yes
+- hosts: webservers
+  become: True
   tasks:
    - name: Deploy static website 
      copy: 
-       src: /home/ec2-user/ansible_project/webapp/src/main/webapp  
+       src: /var/lib/jenkins/workspace/build_job/webapp/target/webapp.war  
        dest: /opt/apache-tomcat-8.5.75/webapps
  

@@ -1,7 +1,29 @@
 - hosts: webservers
   become: True
   tasks:
-   - name: Deploy static website 
+   - name: Installation of Java
+     yum:
+       name: java-openjdk11 
+       state: present
+   - name: create /opt/tomcat directory
+     file:
+       path: /opt/tomcat
+       state: directory  
+   - name: download & unarchive
+     unarchive:
+       src: http://apache.cs.utah.edu/tomcat/tomcat-9/v9.0.16/bin/apache-tomcat-9.0.16.tar.gz
+       dest: /opt/tomcat
+   - name: Copy Tomcat service from local to remote
+     copy:
+       src: tomcat.service
+       dest: /etc/systemd/system/
+   - name: Start and enable Tomcat service
+    systemd:
+      name: tomcat
+      state: started
+      enabled: true
+      daemon_reload: true
+   - name: Deploy website on tomcat
      copy: 
        src: /var/lib/jenkins/workspace/build_job/webapp/target/webapp.war  
        dest: /opt/apache-tomcat-8.5.75/webapps

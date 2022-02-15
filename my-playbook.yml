@@ -18,11 +18,11 @@
        src: tomcat.service
        dest: /etc/systemd/system/
    - name: Start and enable Tomcat service
-    systemd:
-      name: tomcat
-      state: started
-      enabled: true
-      daemon_reload: true
+     systemd:
+       name: tomcat
+       state: started
+       enabled: true
+       daemon_reload: true
    - name: Deploy website on tomcat
      copy: 
        src: /var/lib/jenkins/workspace/build_job/webapp/target/webapp.war  

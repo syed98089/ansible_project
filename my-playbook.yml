@@ -3,7 +3,7 @@
   tasks:
    - name: Installation of Java
      yum:
-       name: java-openjdk11 
+       name: openjdk-11-jdk 
        state: present
    - name: create /opt/tomcat directory
      file:
@@ -14,7 +14,7 @@
        src: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.75/bin/apache-tomcat-8.5.75.tar.gz
        dest: /opt/tomcat
    - name: Start and enable Tomcat service
-     systemd:
+     service:
        name: tomcat
        state: started
        enabled: true

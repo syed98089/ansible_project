@@ -1,0 +1,8 @@
+- hosts: webserver
+  becomes :  yes
+  task:
+   - name: Deploy static website 
+      copy: 
+         src:  /home/ec2-user/ansible_project/webapp/src/main/webapp  
+         dest:  /opt/apache-tomcat-8.5.75/webapps
+ 

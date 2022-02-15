@@ -18,7 +18,7 @@ pipeline {
                }
          stage('Deploy package on tomcat') {
             steps {
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: ' my-playbook.yml'
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: ' /home/ec2-user/ansible_project/my-playbook.yml'
                 }
                }
 

@@ -16,5 +16,11 @@ pipeline {
                 sh 'mvn clean package'
                 }
                }
+         stage('Deploy package on tomcat') {
+            steps {
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', playbook: ' my-playbook.yml'
+                }
+               }
+
 }
 }
